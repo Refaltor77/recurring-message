@@ -26,7 +26,8 @@ class msgTask extends Task
         $message = $this->message;
         $time = $this->time;
         Server::getInstance()->broadcastMessage($message);
-        $this->register->getScheduler()->scheduleDelayedRepeatingTask(new msgTask($message, $time, $this->register),( $time * 20), 20);
+        $this->register->getScheduler()->scheduleDelayedRepeatingTask(new msgTask($message, $time, $this->register), $this->secToTick($time), 20);
         $this->register->getScheduler()->cancelTask($this->getTaskId());
     }
+    public function secToTick(int $sec): int { return $sec * 20; }
 }
