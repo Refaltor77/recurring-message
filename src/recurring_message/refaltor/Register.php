@@ -11,7 +11,9 @@ class Register extends PluginBase{
         $this->saveDefaultConfig();
         foreach ($this->getConfig()->get("message") as $values){
             $message = explode(":", $values);
-            $this->getScheduler()->scheduleDelayedRepeatingTask(new msgTask($message[0], $message[1], $this), ($message[1] * 20), 20);
+            $this->getScheduler()->scheduleDelayedRepeatingTask(new msgTask($message[0], $message[1], $this), $this->secToTick($message[1]), 20);
         }
     }
+    public function secToTick(int $sec): int { return $sec * 20; }
+
 }
