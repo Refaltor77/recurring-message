@@ -1,6 +1,6 @@
 ---
-# "message:time(sec)"
+# "message<:>time(sec)"
 
 message:
-  - "Wow one message recurent:60"
+  - "Wow one message recurent<:>60"
 ...
